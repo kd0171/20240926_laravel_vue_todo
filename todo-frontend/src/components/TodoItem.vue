@@ -1,6 +1,6 @@
 <template>
   <li>
-    <input type="checkbox" v-model="todo.completed" @change="updateTodo" />
+    <input type="checkbox" v-model="localCompleted" @change="updateTodo" />
     {{ todo.title }}
     <button @click="deleteTodo">Delete</button>
   </li>
@@ -11,9 +11,14 @@ import axios from 'axios';
 
 export default {
   props: ['todo'],
+  data() {
+    return {
+      localCompleted: this.todo.completed, // todoのcompletedをローカルデータとして扱う
+    };
+  },
   methods: {
     async updateTodo() {
-      await axios.put(`/api/todos/${this.todo.id}`, { completed: this.todo.completed });
+      await axios.put(`/api/todos/${this.todo.id}`, { completed: this.localCompleted });
       this.$emit('update');
     },
     async deleteTodo() {
