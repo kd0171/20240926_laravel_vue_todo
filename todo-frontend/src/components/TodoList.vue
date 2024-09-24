@@ -11,6 +11,9 @@
       ></todo-item>
     </ul>
     <todo-form @add="fetchTodos"></todo-form>
+
+        <!-- タグの追加フォーム -->
+    <tag-form @tag-added="fetchTodos"></tag-form>
   </div>
 </template>
 
@@ -18,9 +21,10 @@
 import axios from 'axios';
 import TodoItem from './TodoItem.vue';
 import TodoForm from './TodoForm.vue';
+import TagForm from './TagForm.vue';
 
 export default {
-  components: { TodoItem, TodoForm },
+  components: { TodoItem, TodoForm, Tagform },
   data() {
     return {
       todos: [],
