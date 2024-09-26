@@ -32,4 +32,15 @@ class TodoController extends Controller
         $todo->delete();
         return response()->json(null, 204);
     }
+    public function addTag(Request $request, Todo $todo)
+    {
+        // 新しいタグを作成または取得
+        $tag = Tag::firstOrCreate(['name' => $request->input('name')]);
+
+        // ToDoにタグを関連付け
+        $todo->tags()->attach($tag->id);
+
+        return response()->json($todo->tags);
+    }
+
 }

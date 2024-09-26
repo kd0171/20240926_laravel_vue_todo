@@ -1,6 +1,6 @@
 <template>
   <div>
-    <h1>Todo List</h1>
+    <h1>Sample</h1>
     <ul>
       <todo-item
         v-for="todo in todos"
@@ -24,7 +24,7 @@ import TodoForm from './TodoForm.vue';
 import TagForm from './TagForm.vue';
 
 export default {
-  components: { TodoItem, TodoForm, Tagform },
+  components: { TodoItem, TodoForm, TagForm },
   data() {
     return {
       todos: [],
